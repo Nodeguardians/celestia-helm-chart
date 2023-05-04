@@ -1,0 +1,33 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ tpl .Values.celestiaApp.home.volume.name . }}
+  namespace: {{ template "celestia.namespace" . }}
+  labels:
+    {{- toYaml .Values.global.labels | trim | nindent 4 }}
+spec:
+  accessModes:
+    - {{ .Values.celestiaApp.home.volume.accessMode }}
+  storageClassName: {{ .Values.celestiaApp.home.volume.storageClass }}
+  resources:
+    requests:
+      storage: {{ .Values.celestiaApp.home.volume.storage }}
+
+{{- if .Values.celestiaNode.enabled }}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ tpl .Values.celestiaNode.home.volume.name . }}
+  namespace: {{ template "celestia.namespace" . }}
+  labels:
+    {{- toYaml .Values.global.labels | trim | nindent 4 }}
+spec:
+  accessModes:
+    - {{ .Values.celestiaNode.home.volume.accessMode }}
+  storageClassName: {{ .Values.celestiaNode.home.volume.storageClass }}
+  resources:
+    requests:
+      storage: {{ .Values.celestiaNode.home.volume.storage }}
+{{- end }}

@@ -1,0 +1,13 @@
+{{- if .Values.celestiaNode.enabled }}
+{{ $node_type := .Values.celestiaNode.type }}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.celestiaNode.config.configmapName }}
+  namespace: {{ template "celestia.namespace" . }}
+  labels:
+    {{- toYaml .Values.global.labels | trim | nindent 4 }}
+data:
+  {{- (.Files.Glob (printf "files/%s-node/config.toml" $node_type )).AsConfig | nindent 2 }}
+{{- end }}

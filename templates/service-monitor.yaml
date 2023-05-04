@@ -1,0 +1,23 @@
+{{- if .Values.monitoring.enabled }}
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    {{- toYaml .Values.global.labels | trim | nindent 4 }}
+  name: "{{ .Values.global.name }}-{{ .Values.global.chainId }}"
+  namespace: {{ .Values.monitoring.namespace }}
+spec:
+  endpoints:
+  - interval: 30s
+    port: {{ tpl .Values.celestiaApp.ports.metrics.name . }}
+    path: /metrics
+    scheme: http
+  namespaceSelector:
+    matchNames:
+    - {{ template "celestia.namespace" . }}
+  jobLabel: "{{ .Values.global.name }}-{{ .Values.global.chainId }}"
+  selector:
+    matchLabels:
+      service: metrics
+{{- end }}

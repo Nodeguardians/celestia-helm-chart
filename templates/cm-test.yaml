@@ -1,0 +1,8 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: my-config
+data:
+  config.toml: |
+{{ tpl (.Files.Get "environment/mocha/files/config-test.toml.tpl") . | indent 4 }}
