@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  celestia:
+  - apiVersion: v2
+    appVersion: v0.11.1
+    created: "2023-05-09T10:59:53.609699+02:00"
+    description: Celestia Helm chart for Kubernetes
+    digest: a1f853fa623e2c164b268d027edf20e6b7c326d940af9b4fb592857e3d837652
+    name: celestia
+    type: application
+    urls:
+    - https://nodeguardians.github.io/celestia-helm-chart/celestia-1.0.0.tgz
+    version: 1.0.0
+generated: "2023-05-09T10:59:53.601405+02:00"
