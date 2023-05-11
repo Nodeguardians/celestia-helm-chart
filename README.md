@@ -63,8 +63,8 @@ You can provide your own celkey using secret, you will need the 2 files represen
 
 ```yaml
 ├── .celestia-bridge-mocha/keys/keyring-test/
-│                   ├── 9989057057ec3d0d2280cdf689051374bf4721cx.address
-│                   ├── my_celes_key.info
+    ├── 9989057057ec3d0d2280cdf689051374bf4721cx.address
+    └── my_celes_key.info
 ```
 
 Then you can create secret from thoses files
